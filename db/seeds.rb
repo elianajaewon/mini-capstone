@@ -7,3 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Product.create(name: "apple", price: "$1", image:"", description: "delicious red fruit")
+Product.create(name: "mango", price: "$3", image:"", description: "tropical fruit")
+Product.create(name: "bacon", price: "$4", image:"", description: "crispy fried pork")
+Product.create(name: "milk", price: "$2", image:"", description: "dairy product")
+Product.create(name: "spinach", price: "$2", image:"", description: "leafy green vegetable")
