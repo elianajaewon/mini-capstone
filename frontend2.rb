@@ -1,38 +1,46 @@
 require "unirest"
 require "pp"
 
-while true 
-  system "clear"
-  puts "Welcome to the Products App! Please select an option."
-  puts "[1] Show all products."
-  puts "[1.1] Search products by title."
-  puts "[2] Create a new product."
-  puts "[3] Choose a product to show."
-  puts "[4] Choose a product to update."
-  puts "[5] Choose a product to destroy."
-  puts
-  puts "[signup] Sign up a new user."
-  puts "[login] Log in."
-  puts "[logout] Log out."
-  puts "[order] Create a new order."
-  puts "[view] View all orders."
-  puts 
-  puts "[q] Quit"
+class Frontend 
+  def initialize
+    @jwt = "" 
+  end 
 
-  input_option = gets.chomp 
+  def show_menu 
+    system "clear"
+    puts "Welcome to the Products App! Please select an option."
+    puts "[1] Show all products."
+    puts "[1.1] Search products by title."
+    puts "[2] Create a new product."
+    puts "[3] Choose a product to show."
+    puts "[4] Choose a product to update."
+    puts "[5] Choose a product to destroy."
+    puts
+    puts "[signup] Sign up a new user."
+    puts "[login] Log in."
+    puts "[logout] Log out."
+    puts "[order] Create a new order."
+    puts "[view] View all orders."
+    puts 
+    puts "[q] Quit"
+  end 
 
-  if input_option == "1"
+  def show_all
     response = Unirest.get("http://localhost:3000/products")
     products = response.body
-    pp products 
-  elsif input_option == "1.1"
+    pp products
+  end  
+
+  def search_product
     puts "Enter a search term."
     search_term = gets.chomp 
-    puts "Here is your recipe:"
+    puts "Here is your product:"
     response = Unirest.get("http://localhost:3000/products?search=#{search_term}")
     product = response.body 
     pp product
-  elsif input_option == "2"
+  end 
+
+  def create_new
     params = {}
     puts "Enter a product name:"
     params["name"] = gets.chomp
@@ -51,13 +59,17 @@ while true
       puts "Here's your new product:"
       pp product 
     end 
-  elsif input_option == "3"
+  end 
+
+  def show_one
     puts "Please choose a recipe ID."
     product_id = gets.chomp
     response = Unirest.get("http://localhost:3000/products/#{product_id}")
     product = response.body
     pp product 
-  elsif input_option == "4"
+  end
+
+  def update_product
     puts "Which product ID would you like to update?"
     product_id = gets.chomp
     params = {}
@@ -77,13 +89,17 @@ while true
     else 
       puts "Here is your updated product:"
       pp product 
-    end 
-  elsif input_option == "5"
+    end
+  end 
+
+  def destroy_product
     puts "Which product ID would you like to destroy?"
     product_id = gets.chomp
     response = Unirest.delete("http://localhost:3000/products/#{product_id}")
     pp response.body
-  elsif input_option == "signup"
+  end
+
+  def signup_user
     params = {}
     puts "Name: "
     params[:name] = gets.chomp
@@ -95,7 +111,9 @@ while true
     params[:password_confirmation] = gets.chomp 
     response = Unirest.post("http://localhost:3000/users", parameters: params)
     pp response.body 
-  elsif input_option == "login"
+  end
+
+  def login_user
     puts "Please log in."
     params = {}
     puts "Email: "
@@ -106,10 +124,14 @@ while true
     pp response.body 
     jwt = response.body["jwt"]
     Unirest.default_header("Authorization", "Bearer #{jwt}")
-  elsif input_option == "logout"
+  end
+
+  def logout_user
     jwt = ""
     Unirest.clear_default_headers()
-  elsif input_option == "order"
+  end
+
+  def order_product
     params = {}
     puts "Enter a product id: "
     params[:product_id] = gets.chomp 
@@ -117,13 +139,53 @@ while true
     params[:quantity] = gets.chomp 
     response = Unirest.post("http://localhost:3000/orders", parameters: params)
     pp response.body 
-  elsif input_option == "view"
+  end
+
+  def view_orders
     response = Unirest.get("http://localhost:3000/orders")
     pp response.body 
-  elsif input_option == "q"
+  end 
+
+  def quit
     puts "Goodbye!"
-    break
+    exit
   end
-  puts "Press enter to continue."
-  gets.chomp 
-end  
+
+  def run 
+    while true 
+      show_menu
+      input_option = gets.chomp
+
+      if input_option == "1"
+        show_all
+      elsif input_option == "1.1"
+        search_product
+      elsif input_option == "2"
+        create_new
+      elsif input_option == "3"
+        show_one 
+      elsif input_option == "4"
+        update_product 
+      elsif input_option == "5"
+        destroy_product
+      elsif input_option == "signup"
+        signup_user
+      elsif input_option == "login"
+        login_user
+      elsif input_option == "logout"
+        logout_user
+      elsif input_option == "order"
+        order_product
+      elsif input_option == "view"
+        view_orders
+      elsif input_option == "q"
+        quit 
+      end
+      puts "Press enter to continue."
+      gets.chomp 
+    end  
+  end 
+end 
+
+frontend = Frontend.new
+frontend.run 
