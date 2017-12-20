@@ -9,10 +9,20 @@ class Product < ApplicationRecord
   belongs_to :supplier
   has_many :images
   has_many :category_products
+  has_many :carted_products 
 
   has_many :categories, through: :category_products
   # def categories
   #   category_products.map {|category_product| category_product.category}
   # end
 
+  def as_json
+    {
+      id: id,
+      name: name,
+      price: price,
+      description: description,
+      images: images
+    }
+  end
 end 

@@ -102,62 +102,62 @@
 #   name: "pet" 
 #   )
 
-CategoryProduct.create(
-  category_id: 1,
-  product_id: 1
-  )
+# CategoryProduct.create(
+#   category_id: 1,
+#   product_id: 1
+#   )
 
-CategoryProduct.create(
-  category_id: 1, 
-  product_id: 2
-  )
+# CategoryProduct.create(
+#   category_id: 1, 
+#   product_id: 2
+#   )
 
-CategoryProduct.create(
-  category_id: 1,
-  product_id: 3
-  )
+# CategoryProduct.create(
+#   category_id: 1,
+#   product_id: 3
+#   )
 
-CategoryProduct.create(
-  category_id: 1, 
-  product_id: 4
-  )
+# CategoryProduct.create(
+#   category_id: 1, 
+#   product_id: 4
+#   )
 
-CategoryProduct.create(
-  category_id: 1,
-  product_id: 6
-  )
+# CategoryProduct.create(
+#   category_id: 1,
+#   product_id: 6
+#   )
 
-CategoryProduct.create(
-  category_id: 3, 
-  product_id: 1
-  )
+# CategoryProduct.create(
+#   category_id: 3, 
+#   product_id: 1
+#   )
 
-CategoryProduct.create(
-  category_id: 3, 
-  product_id: 2 
-  )
+# CategoryProduct.create(
+#   category_id: 3, 
+#   product_id: 2 
+#   )
 
-CategoryProduct.create(
-  category_id: 3, 
-  product_id: 3
-  )
+# CategoryProduct.create(
+#   category_id: 3, 
+#   product_id: 3
+#   )
 
-CategoryProduct.create(
-  category_id: 4, 
-  product_id: 4
-  )
+# CategoryProduct.create(
+#   category_id: 4, 
+#   product_id: 4
+#   )
 
-CategoryProduct.create(
-  category_id: 5, 
-  product_id: 5
-  )
+# CategoryProduct.create(
+#   category_id: 5, 
+#   product_id: 5
+#   )
 
-CategoryProduct.create(
-  category_id: 6, 
-  product_id: 8
-  )
+# CategoryProduct.create(
+#   category_id: 6, 
+#   product_id: 8
+#   )
 
-CategoryProduct.create(
-  category_id: 7, 
-  product_id: 7
-  )
+# CategoryProduct.create(
+#   category_id: 7, 
+#   product_id: 7
+#   )
